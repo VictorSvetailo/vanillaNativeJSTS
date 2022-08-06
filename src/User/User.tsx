@@ -31,7 +31,7 @@ export function User() {
     }
     const focusLostHandler = () => {
         console.log('Focus lost')
-        alert('Вы покинули Textarea!')
+        alert('Вы покинули Textarea Hello!')
     }
     const onAgeChanged = (event: ChangeEvent<HTMLInputElement>) => {
         let save = event.currentTarget.value
