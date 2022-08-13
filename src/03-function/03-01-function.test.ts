@@ -1,6 +1,5 @@
-import {CityType} from "../02-object/02-01-object";
-import {addMoneyToBudget, createMessage, repairHouse, toFireStaff, toHireStaff} from "./03-function";
-
+import {CityType} from '../02-object/02-01-object';
+import {addMoneyToBudget, repairHouse, toFireStaff, toHireStaff} from './03-function';
 
 let city: CityType;
 
@@ -44,47 +43,73 @@ beforeEach(() => {
     }
 })
 
-
 // 01. Создайте в отдельном файле функцию, чтобы тесты прошли
-test.skip('Budget should be for changed fot HOSPITAL', () => {
+test('Budget should be for changed fot HOSPITAL', () => {
     addMoneyToBudget(city.governmentBuildings[0], 100000);
     expect(city.governmentBuildings[0].budget).toBe(300000);
 });
-// 02. Тесты должны пройти
-test.skip('Budget should be changed for FIRE-STATION', () => {
+
+//02. Тесты должны пройти
+test('Budget should be changed for FIRE-STATION', () => {
     addMoneyToBudget(city.governmentBuildings[1], -100000)
     expect(city.governmentBuildings[1].budget).toBe(400000)
 });
 
+// test('Houses should be destroyed', () => {
+//     demoLishHousesOnTheStreet(city, 'Happy street')
+//     expect(city.houses.length).toBe(1)
+//     expect(city.houses[0].id).toBe(1)
+// });
 
-// 03. Создайте в том же файле ещё одну функцию, чтобы тесты прошли
-test.skip('House should be repaired', () => {
+//01. Создайте в том же файле ещё одну функцию, чтобы тесты прошли
+test('House should be repaired', () => {
     repairHouse(city.houses[1]);
     expect(city.houses[1].repaired).toBeTruthy();
 });
 
-
-// 04. Создайте в том же файле еще одну функцию, чтобы тесты прошли
-test.skip('Staff should be reduced', () => {
+// 02. Создайте в том же файле еще одну функцию, чтобы тесты прошли
+test('Staff should be increased', () => {
     toFireStaff(city.governmentBuildings[0], 20);
-
     expect(city.governmentBuildings[0].staffCount).toBe(180);
 });
 
 
-// 05. Создайте в том же файле еще одну функцию, чтобы тесты прошли
-test.skip('Staff should be increased', () => {
-    toHireStaff(city.governmentBuildings[0], 20);
+test('Staff should be reduced', () => {
+    toHireStaff(city.governmentBuildings[0], 100);
+    toHireStaff(city.governmentBuildings[1], 20);
 
-    expect(city.governmentBuildings[0].staffCount).toBe(220);
+    expect(city.governmentBuildings[0].staffCount).toBe(300);
+    expect(city.governmentBuildings[1].staffCount).toBe(1020);
+
 });
 
 
 
-test.skip('Greeting message should be correct for city', () => {
-    const message = createMessage(city);
-    expect(message).toBe('Hello New York citizens. I want you be happy. All 1000000 men');
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 04. Создайте в том же файле еще одну функцию, чтобы тесты прошли
+
+
+
+
+//
+//
+//
+// test.skip('Greeting message should be correct for city', () => {
+//     const message = createMessage(city);
+//     expect(message).toBe('Hello New York citizens. I want you be happy. All 1000000 men');
+// });
 
 
 
