@@ -16,7 +16,7 @@ beforeEach(() => {
     }
 })
 
-test('', () => {
+test.skip('', () => {
     const {age, lessons} = props;
     const {title} = props.address.street;
 
@@ -31,7 +31,7 @@ test('', () => {
     expect(title).toBe('Nezavisimosti street');
 })
 
-test('', () =>{
+test.skip('', () =>{
     const l1 = props.lessons[0];
     const l2 = props.lessons[1];
 

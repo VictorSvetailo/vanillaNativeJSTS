@@ -15,7 +15,7 @@ beforeEach (()=>{
     }
 })
 
-test( 'should select corresponding user', ()=>{
+test.skip( 'should select corresponding user', ()=>{
     users['1'].name = 'Ekaterina'
 
     // expect(userObj[0]).toBe('Victor')
@@ -24,7 +24,7 @@ test( 'should select corresponding user', ()=>{
     // expect(userObj[3]).toBe('Katya')
 })
 
-test( 'should delete corresponding user', ()=>{
+test.skip( 'should delete corresponding user', ()=>{
     delete users['1']
     expect(users['1']).toBeUndefined()
 })

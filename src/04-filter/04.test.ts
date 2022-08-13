@@ -1,4 +1,4 @@
-test("should take old men older then 90", ()=> {
+test.skip("should take old men older then 90", ()=> {
     const ages = [18, 20, 22, 1, 100, 90, 14];
 
 
@@ -10,7 +10,7 @@ test("should take old men older then 90", ()=> {
 
 // Courses
 
-test("should take courses chiper 160", ()=> {
+test.skip("should take courses chiper 160", ()=> {
     const courses = [
         {title: 'css', price: 110},
         {title: 'JS', price: 200},
@@ -29,7 +29,7 @@ test("should take courses chiper 160", ()=> {
 })
 
 // Tasks
-test("get only completed tasks", ()=> {
+test.skip("get only completed tasks", ()=> {
     const tasks = [
         {id: 1, title: 'Bread', isDone: false},
         {id: 2, title: 'Milk', isDone: true},

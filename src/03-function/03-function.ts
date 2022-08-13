@@ -1,5 +1,5 @@
 import {StudentType} from "../02-object/02-object";
-import {CityType, GovernmentBuildingType, HouseType} from "../02-object/02-02-object";
+import {CityType, GovernmentBuildingType, HouseType} from "../02-object/02-01-object";
 
 
 export const addSkill = (student: StudentType, skill: string) => {
