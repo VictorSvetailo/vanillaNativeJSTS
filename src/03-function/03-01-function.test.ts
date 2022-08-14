@@ -1,5 +1,12 @@
 import {CityType} from '../02-object/02-01-object';
-import {addMoneyToBudget, repairHouse, toFireStaff, toHireStaff} from './03-function';
+import {
+    addMoneyToBudget,
+    demoLishHousesOnTheStreet,
+    getBuildingsWithStaffCountGreaterThen,
+    repairHouse,
+    toFireStaff,
+    toHireStaff
+} from './03-function';
 
 let city: CityType;
 
@@ -8,15 +15,15 @@ beforeEach(() => {
         title: "New York",
         houses: [
             {
-                buildedAt: 2012, repaired: false,
+                id: 1, buildedAt: 2012, repaired: false,
                 address: {number: 100, street: {title: 'White street'}}
             },
             {
-                buildedAt: 2008, repaired: false,
+                id: 2, buildedAt: 2008, repaired: false,
                 address: {number: 100, street: {title: 'Happy street'}}
             },
             {
-                buildedAt: 2020, repaired: false,
+                id: 3, buildedAt: 2020, repaired: false,
                 address: {number: 101, street: {title: 'Happy street'}}
             },
 
@@ -55,11 +62,12 @@ test('Budget should be changed for FIRE-STATION', () => {
     expect(city.governmentBuildings[1].budget).toBe(400000)
 });
 
-// test('Houses should be destroyed', () => {
-//     demoLishHousesOnTheStreet(city, 'Happy street')
-//     expect(city.houses.length).toBe(1)
-//     expect(city.houses[0].id).toBe(1)
-// });
+test('Houses should be destroyed', () => {
+    demoLishHousesOnTheStreet(city, 'Happy street')
+
+    expect(city.houses.length).toBe(1)
+    expect(city.houses[0].id).toBe(1)
+});
 
 //01. Создайте в том же файле ещё одну функцию, чтобы тесты прошли
 test('House should be repaired', () => {
@@ -73,7 +81,6 @@ test('Staff should be increased', () => {
     expect(city.governmentBuildings[0].staffCount).toBe(180);
 });
 
-
 test('Staff should be reduced', () => {
     toHireStaff(city.governmentBuildings[0], 100);
     toHireStaff(city.governmentBuildings[1], 20);
@@ -83,6 +90,12 @@ test('Staff should be reduced', () => {
 
 });
 
+test('Buldings with correct staff count', () => {
+   let buildings = getBuildingsWithStaffCountGreaterThen(city.governmentBuildings, 500);
+
+    expect(buildings.length).toBe(1);
+    expect(buildings[0].type).toBe('FIRE-STATION');
+});
 
 
 

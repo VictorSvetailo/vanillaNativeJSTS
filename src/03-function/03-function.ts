@@ -40,11 +40,13 @@ export function toHireStaff(building: GovernmentBuildingType, staffCountToHire: 
     building.staffCount += staffCountToHire
 }
 
+export function demoLishHousesOnTheStreet(city: CityType, street: string) {
+    city.houses = city.houses.filter(h => h.address.street.title !== street)
+}
 
-
-
-
-
+export function getBuildingsWithStaffCountGreaterThen(buildings: Array<GovernmentBuildingType>, number: number){
+   return  buildings.filter(s => s.staffCount > number)
+}
 
 
 
