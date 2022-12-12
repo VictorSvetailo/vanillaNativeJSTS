@@ -2,9 +2,7 @@ import {
     addNewBooksToUser,
     changeHouse,
     makeHairStyle,
-    moveLaptop,
     moveUser, removeBook, updateBooks, updateCompanyTitle, updateCompanyTitle2,
-    upgradeBooks,
     UserType,
     UserWithBooksType,
     UserWithLaptopType, WithCompaniesType
@@ -19,11 +17,13 @@ test('reference type test', () => {
             city: 'Minsk'
         }
     }
+
     const awesomeUser = makeHairStyle(user, 2)
 
     expect(user.hair).toBe(32)
     expect(awesomeUser.hair).toBe(16)
     expect(awesomeUser.address).toBe(user.address)
+    expect(awesomeUser.address.city).toBe(user.address.city)
 
 
 })
@@ -50,29 +50,7 @@ test('change address user', () => {
 })
 
 
-test.skip('change address user', () => {
-    let user: UserWithLaptopType = {
-        name: 'Victor',
-        hair: 32,
-        address: {
-            city: 'Minsk',
-            house: 12,
-        },
-        laptop: {
-            title: 'ZenBook'
-        }
-    }
-
-    const movedNewLaptop = moveLaptop(user, 'MacBook')
-    expect(user).not.toBe(movedNewLaptop)
-    //expect(user.address).toBe(movedNewLaptop.address)
-    expect(user.laptop).not.toBe(movedNewLaptop.laptop)
-    expect(movedNewLaptop.laptop.title).toBe('MacBook')
-    expect(user.laptop.title).toBe('ZenBook')
-})
-
-
-test('upgrade books', () => {
+test('changeHouse', () => {
     let user: UserWithLaptopType & UserWithBooksType = {
         name: 'Victor',
         hair: 32,
@@ -89,7 +67,6 @@ test('upgrade books', () => {
     }
 
     const userCopy = changeHouse(user, 666)
-    // const userCopy = upgradeBooks(user, 'MacBook')
 
     expect(user).not.toBe(userCopy)
     expect(user.address).not.toBe(userCopy.address)
@@ -119,7 +96,6 @@ test('add new books to user', () => {
     }
 
     const userCopy = addNewBooksToUser(user, 'ts')
-    // const userCopy = upgradeBooks(user, 'MacBook')
 
     expect(user).not.toBe(userCopy)
     expect(user.address).toBe(userCopy.address)
@@ -147,7 +123,6 @@ test('update js to ts', () => {
 
     const userCopy = updateBooks(user, 'js', 'ts')
     // const userCopy = upgradeBooks(user, 'MacBook')
-
     expect(user).not.toBe(userCopy)
     expect(user.address).toBe(userCopy.address)
     expect(user.laptop).toBe(userCopy.laptop)
@@ -221,9 +196,31 @@ test('update company', () => {
     const copy = updateCompanyTitle2(companies, 'Dimych', 1, 'EPAM')
 
 
-    expect(copy['Dimych']).not.toBe(companies['Dimych'])
-    expect(copy['Victor']).toBe(companies['Victor'])
-    expect(copy['Dimych'][0].title).toBe('EPAM')
+    expect(copy['Dimycfsvfsdv h'][0].title).toBe(companies['Dimych'][0].title)
+    expect(copy['Victor'][1].title).toBe(companies['Victor'][1].title)
+    expect(copy['Dimych'][0].title).toBe('EPaM')
     expect(companies['Dimych'][0].title).toBe('Epam')
 
 })
+
+
+
+// test('change address user', () => {
+//     let user: UserWithLaptopType= {
+//         name: 'Victor',
+//         hair: 32,
+//         address: {
+//             city: 'Minsk',
+//             house: 12,
+//         },
+//         laptop: {
+//             title: 'ZenBook'
+//         }
+//     }
+//
+//     const movedNewLaptop = moveLaptop(user, 'MacBook')
+//     expect(user).not.toBe(movedNewLaptop)
+//     expect(user.address).toBe(user.address)
+//     expect(user.laptop.title).toBe('ZenBook')
+//     // expect(movedNewLaptop.laptop.title).toBe('ZenBook')
+// })

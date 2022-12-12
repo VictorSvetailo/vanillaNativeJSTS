@@ -23,65 +23,58 @@ export type WithCompaniesType = {
 }
 
 
-export function makeHairStyle(u: UserType, power: number) {
-    const copy = {
-        ...u,
-        hair: u.hair / power,
-    }
-    return copy
+export function makeHairStyle(user: UserType, power: number) {
+    return {...user, hair: user.hair / power}
 }
 
-export function moveUser(u: UserWithLaptopType, city: string) {
-    return {
-        ...u,
-        address: {
-            ...u.address,
-            city: city
-        }
-
-    }
+export const moveUser = (user: UserWithLaptopType, value: string) => {
+    return {...user, address: {...user.address, city:  value}}
 }
 
 
-export function changeHouse(u: UserWithLaptopType & UserWithBooksType, house: number) {
-    return {
-        ...u,
-        address: {
-            ...u.address,
-            house: house
-        }
-    }
+export function changeHouse(user: UserWithLaptopType & UserWithBooksType, house: number) {
+    return {...user, address: {...user.address, house:  house}}
+}
+
+export const addNewBooksToUser = (user: UserWithLaptopType & UserWithBooksType, newBook: string) => {
+    return {...user, books: [...user.books, newBook]}
 }
 
 
-export function moveLaptop(u: UserWithLaptopType, newLap: string) {
-    const copy = {
-        ...u,
-        }
-    copy.address = {
-        ...copy.address,
-        city: newLap}
-    return copy
-
-}
-
-export function upgradeBooks(u: UserWithLaptopType, newLap: string) {
-    return {
-        ...u,
-        laptop: {
-            ...u.laptop,
-            title: newLap
-        }
-    }
+export const updateBooks = (user: UserWithLaptopType & UserWithBooksType, oldBook: string, newBook: string) => {
+    return {...user, books: [...user.books.map(b => b === oldBook ? newBook : b)]}
 }
 
 
-export function addNewBooksToUser(u: UserWithLaptopType & UserWithBooksType, newBook: string) {
+export const removeBook = (user: UserWithLaptopType & UserWithBooksType, book: string) => {
+    return {...user, books: [...user.books.filter(b => b !== book)]}
+}
 
-    return {
-        ...u,
-        books: [...u.books, newBook]
-    }
+
+export function updateCompanyTitle(user: WithCompaniesType, companyID: number, newTitle: string) {
+    return {...user, companies: [...user.companies.map(c => c.id === companyID ?
+            {...c, title: newTitle} : c)]}
+}
+
+export function updateCompanyTitle2(companies: { [key: string]: Array<CompanyType> },
+                                    userName: string, companyID: number, newTitle: string,) {
+    return {...companies, [userName]: [...companies[userName].map(o => o.id === companyID ?
+        {...o, title:  'dcdc'}: o) ]}
+}
+
+
+// export const moveLaptop = (user: UserWithLaptopType, lap: string) =>{
+//     let copyUser = {...user}
+//     let copyLap = {copyUser, laptop: {...copyUser.address, title: lap}}
+//     return {copyLap}
+// }
+
+
+// export function upgradeBooks(u: UserWithLaptopType, newLap: string) {
+//
+// }
+
+
 
     // const copy = {
     //    ...u,
@@ -91,13 +84,10 @@ export function addNewBooksToUser(u: UserWithLaptopType & UserWithBooksType, new
     //
     // copy.books.push(newBook)
     // return copy
-}
+
 
 // массив примитивов
-export const updateBooks = (u: UserWithLaptopType & UserWithBooksType, oldBook: string, newBook: string) =>
-    ({
-        ...u, books: u.books.map(b => b === oldBook ? newBook : b)
-    })
+
 // длинная запись
 //     const copy = {
 //         ...u,
@@ -112,55 +102,99 @@ export const updateBooks = (u: UserWithLaptopType & UserWithBooksType, oldBook: 
 //     }
 //     return copy
 
-export const removeBook = (u: UserWithLaptopType & UserWithBooksType, removeForBook: string) =>
-    ({
-        ...u,
-        books: u.books.filter(b => b !== removeForBook)
-    })
 
 
-export function x(u: UserWithLaptopType & UserWithBooksType, newBook: string) {
 
-    return {
-        ...u,
-        books: [...u.books, newBook]
-    }
+//
+// export function updateCompanyTitle(user: WithCompaniesType, companyID: number, newTitle: string) {
+//
+//
+//     // полная запись
+//     // const copy: WithCompaniesType = {
+//     //     ...user,
+//     //     companies: user.companies.map(c => {
+//     //         if (c.id === companyID){
+//     //             return {...c, title: newTitle};
+//     //         }else {
+//     //             return c
+//     //         }
+//     //     })
+//     //
+//     // }
+//
+//     //тернарное выражение СЛОЖНО
+//     const copy: WithCompaniesType = {
+//         ...user,
+//         companies: user.companies.map(c => c.id === companyID
+//             ? {...c, title: newTitle}
+//             : c)
+//
+//     }
+//     return copy
+// }
+//
+// export function updateCompanyTitle2(companies: { [key: string]: Array<CompanyType> }, userName: string, companyID: number, newTitle: string,) {
+//
+//     let companyCopy = {...companies}
+//     companyCopy[userName] = companyCopy[userName].map(c => c.id === companyID
+//         ? {...c, title: newTitle} : c)
+//
+//
+//     return companyCopy
+// }
 
-}
-
-export function updateCompanyTitle(user: WithCompaniesType, companyID: number, newTitle: string) {
-
-
-    // полная запись
-    // const copy: WithCompaniesType = {
-    //     ...user,
-    //     companies: user.companies.map(c => {
-    //         if (c.id === companyID){
-    //             return {...c, title: newTitle};
-    //         }else {
-    //             return c
-    //         }
-    //     })
-    //
-    // }
-
-    //тернарное выражение СЛОЖНО
-    const copy: WithCompaniesType = {
-        ...user,
-        companies: user.companies.map(c => c.id === companyID
-            ? {...c, title: newTitle}
-            : c)
-
-    }
-    return copy
-}
-
-export function updateCompanyTitle2(companies: { [key: string]: Array<CompanyType> }, userName: string, companyID: number, newTitle: string,) {
-
-    let companyCopy = {...companies}
-    companyCopy[userName] = companyCopy[userName].map(c => c.id === companyID
-        ? {...c, title: newTitle} : c)
+//
+//
+//
+// export function moveUser(u: UserWithLaptopType, city: string) {
+//     return {
+//         ...u,
+//         address: {
+//             ...u.address,
+//             city: city
+//         }
+//
+//     }
+// }
+//
+// export const updateBooks = (u: UserWithLaptopType & UserWithBooksType, oldBook: string, newBook: string) => {
+//     return {...u, books: u.books.map(b => b === oldBook ? newBook : b)}
+// }
 
 
-    return companyCopy
-}
+// export function makeHairStyle(u: UserType, power: number) {
+//     return {...u, hair: u.hair / power}
+// }
+//
+// export const moveUser = (user: UserWithLaptopType, value: string) => {
+//     return {...user, address: {...user.address, city: value}}
+// }
+//
+//
+// export function changeHouse(u: UserWithLaptopType & UserWithBooksType, houses: number) {
+//     return {...u, address: {...u.address, house: houses}}
+// }
+//
+// export const addNewBooksToUser = (user: UserWithLaptopType & UserWithBooksType, newBook: string) => {
+//     return {...user, books: [...user.books, newBook]}
+// }
+//
+//
+// export const updateBooks = (user: UserWithLaptopType & UserWithBooksType, oldBook: string, newBook: string) => {
+//     return {...user, books: user.books.map(b => b === oldBook ? newBook : b)}
+// }
+//
+//
+// export const removeBook = (user: UserWithLaptopType & UserWithBooksType, book: string) => {
+//     return {...user, books: user.books.filter(b => b !== book)}
+// }
+//
+//
+// export function updateCompanyTitle(user: WithCompaniesType, companyID: number, newTitle: string) {
+//     return {...user, companies: user.companies.map(c => c.id === companyID ? {...c, title: newTitle} : c)}
+// }
+//
+// export function updateCompanyTitle2(companies: { [key: string]: Array<CompanyType> },
+//                                     userName: string, companyID: number, newTitle: string,) {
+//     return {...companies, [userName]: companies[userName].map(o => o.id === companyID ? {...o, title: newTitle}: o)}
+// }

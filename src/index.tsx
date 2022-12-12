@@ -10,17 +10,15 @@ import {splitIntoWorlds} from './01-hello-tests/01';
 
 const sentence = '!'
 const result = splitIntoWorlds(sentence)
-console.log(result[0] === 'hello')
-console.log(result[1] === 'my')
-console.log(result[2] === 'friend')
+// console.log(result[0] === 'hello')
+// console.log(result[1] === 'my')
+// console.log(result[2] === 'friend')
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
-  <React.StrictMode>
     <App />
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
